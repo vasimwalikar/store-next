@@ -1,0 +1,95 @@
+<html>
+<head>
+    <title>StoreNext</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/monitoring.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/css/bootstrap-select.css">
+    <link rel="stylesheet" href="assets/css/jquery.toast.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui" id="viewport"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no">
+    <style type="text/css">
+        body{
+            background: #505050; /* Old browsers */
+            background: -moz-linear-gradient(top,  #505050 0%, #272727 53%, #010101 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#505050), color-stop(53%,#272727), color-stop(100%,#010101)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  #505050 0%,#272727 53%,#010101 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  #505050 0%,#272727 53%,#010101 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  #505050 0%,#272727 53%,#010101 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  #505050 0%,#272727 53%,#010101 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#505050', endColorstr='#010101',GradientType=0 ); /* IE6-9 */
+        }
+
+    </style>
+</head>
+<body>
+<!--	<div class="navbar navbar-default">-->
+<!--		<div class="container-fluid">-->
+<!--			<div class="navbar-header">-->
+<!--				<a class="navbar-brand"><img src="images/header.png"></a>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
+<!--	login modal-->
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+                <h1 class="text-center">Login</h1>
+            </div>
+            <div class="modal-body">
+                <form class="form col-md-12 center-block" role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" placeholder="Username" name="username" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control input-lg" placeholder="Password" name="password" id="password" required>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-lg btn-block" name="submit" id="submit">Sign In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="assets/js/lib/jquery.min.js"></script>
+<script src="assets/js/lib/bootstrap.min.js"></script>
+<script src="assets/js/lib/jquery.toast.js"></script>
+<script type="text/javascript">
+    $('form').submit(function (event) {
+        event.preventDefault();
+        var formData = new FormData();
+        formData.append('login', '');
+        formData.append('username', $('#username').val());
+        formData.append('password', $('#password').val());
+        $.ajax({
+            url: 'api.php',
+            type: 'post',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data, textstatus, jqXHR) {
+                if (data == 'success') {
+                    window.location.href = 'orderlist.php';
+                } else {
+                    $.toast({
+                        heading: 'ERROR',
+                        text: 'Invalid Login Credentials.',
+                        hideAfter: false,
+                        position: 'bottom-right',
+                        icon: 'error'
+                    });
+                }
+            }
+        })
+    })
+</script>
+</html>

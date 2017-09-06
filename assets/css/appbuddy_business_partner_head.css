@@ -1,0 +1,33 @@
+#average-downloads-by-promoter,
+#monthly-downloads-by-location,
+#monthly-downloads-promoter-wise,
+#average-downloads-by-location,
+#report-for-last-four-days,
+#monthly-downloads,
+#downloads-last-four-days,
+#monthly-weekly-report,
+#average-downloads,#city-wise-report{
+    display: none;
+}
+
+#ui-datepicker-div{
+    z-index: 2 !important;
+}
+
+#report-for-last-four-days thead{
+    background-color: lightgray;
+}
+.details-container{
+    background: #E8E9EE;
+    margin-bottom: 8px;
+}
+.details-container-border{
+    background: #E8E9EE;
+}
+
+.details-container .refresh-button{
+    padding-left: 30px;
+}
+#report-for-last-four-days,.report-for-last-four-days-spinner{
+    background: white;
+}
